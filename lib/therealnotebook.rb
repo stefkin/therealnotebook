@@ -8,13 +8,13 @@ module TheRealNoteBook
   TEXT_RULING_PADDING = 7.mm
   TEXT_RULES_PER_PAGE = 40
   PAGE_COUNT = 96
+  AR_PAGE_BOX = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
 
   ODD_MARGINS = { margin: 12.mm, left_margin: 25.mm }
   EVEN_MARGINS = { margin: 12.mm, right_margin: 25.mm }
 
   extend self
 
-  # A4 - 210 × 297 mm 
   def call
     Prawn::Document.generate("therealnotebook.pdf", margin: 12.mm, left_margin: 25.mm, page_size: "A4") do |pdf| 
       render_cover(pdf)
@@ -42,8 +42,7 @@ module TheRealNoteBook
   end
 
   def render_cover(pdf)
-    a4_page_box = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
-    pdf.image "./manhog_cover.png", fit: a4_page_box
+    pdf.image "./manhog_cover.png", fit: A4_PAGE_BOX
   end
 
   def render_clef(pdf)
