@@ -38,7 +38,6 @@ module TheRealNoteBook
   end
 
   def render_cover(pdf)
-    puts Prawn::DATADIR
     a4_page_box = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
     pdf.image "./manhog_cover.png", fit: a4_page_box
   end
@@ -47,5 +46,3 @@ module TheRealNoteBook
     5.times { pdf.pad_bottom(RULE_PADDING) { pdf.stroke_horizontal_rule } }
   end
 end
-
-TheRealNoteBook.call

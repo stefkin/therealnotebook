@@ -5,6 +5,7 @@ GEM
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
+    rake (12.3.2)
     ttfunk (1.5.1)
 
 PLATFORMS
@@ -12,6 +13,7 @@ PLATFORMS
 
 DEPENDENCIES
   prawn
+  rake
 
 BUNDLED WITH
    2.0.1
