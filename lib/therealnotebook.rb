@@ -2,10 +2,15 @@ require "prawn"
 require "prawn/measurement_extensions"
 
 module TheRealNoteBook
-  RULE_PADDING = 10
-  CLEF_PADDING = 35
+  NOTE_RULE_PADDING = 8
+  CLEF_PADDING = 28
+  CLEFS_PER_PAGE = 12
   TEXT_RULING_PADDING = 7.mm
+  TEXT_RULES_PER_PAGE = 40
   PAGE_COUNT = 96
+
+  ODD_MARGINS = { margin: 12.mm, left_margin: 25.mm }
+  EVEN_MARGINS = { margin: 12.mm, right_margin: 25.mm }
 
   extend self
 
@@ -28,12 +33,12 @@ module TheRealNoteBook
 
   def render_text_sheet(pdf)
     pdf.start_new_page(margin: 12.mm, right_margin: 25.mm)
-    37.times { pdf.pad_bottom(TEXT_RULING_PADDING) { pdf.stroke_horizontal_rule } }
+    TEXT_RULES_PER_PAGE.times { pdf.pad_bottom(TEXT_RULING_PADDING) { pdf.stroke_horizontal_rule } }
   end
 
   def render_note_sheet(pdf)
     pdf.start_new_page(margin: 12.mm, left_margin: 25.mm)
-    9.times { pdf.pad_bottom(CLEF_PADDING) { render_clef(pdf) } }
+    CLEFS_PER_PAGE.times { pdf.pad_bottom(CLEF_PADDING) { render_clef(pdf) } }
   end
 
   def render_cover(pdf)
@@ -42,6 +47,6 @@ module TheRealNoteBook
   end
 
   def render_clef(pdf)
-    5.times { pdf.pad_bottom(RULE_PADDING) { pdf.stroke_horizontal_rule } }
+    5.times { pdf.pad_bottom(NOTE_RULE_PADDING) { pdf.stroke_horizontal_rule } }
   end
 end
