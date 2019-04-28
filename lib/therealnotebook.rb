@@ -38,10 +38,6 @@ module TheRealNoteBook
   end
 
   def render_cover(pdf)
-    # pdf.font "./realbook-webfont.ttf"
-    # pdf.stroke_bounds
-    # pdf.text_box("The\nReal\nNoteBook", at: [330, 250], height: 250, width: 250, size: 50)
-    # pdf.start_new_page
     puts Prawn::DATADIR
     a4_page_box = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
     pdf.image "./manhog_cover.png", fit: a4_page_box
