@@ -13,28 +13,27 @@ module TheRealNoteBook
   def call
     Prawn::Document.generate("therealnotebook.pdf", margin: 12.mm, left_margin: 25.mm, page_size: "A4") do |pdf| 
       render_cover(pdf)
-
-      render_blank_page(pdf)
+      render_back_cover(pdf)
 
       (PAGE_COUNT / 2).times do
-        render_text_sheet(pdf)
         render_note_sheet(pdf)
+        render_text_sheet(pdf)
       end
     end
   end
 
-  def render_blank_page(pdf)
+  def render_back_cover(pdf)
     pdf.start_new_page
   end
 
   def render_text_sheet(pdf)
+    pdf.start_new_page(margin: 12.mm, right_margin: 25.mm)
     37.times { pdf.pad_bottom(TEXT_RULING_PADDING) { pdf.stroke_horizontal_rule } }
-    pdf.start_new_page
   end
 
   def render_note_sheet(pdf)
+    pdf.start_new_page(margin: 12.mm, left_margin: 25.mm)
     9.times { pdf.pad_bottom(CLEF_PADDING) { render_clef(pdf) } }
-    pdf.start_new_page
   end
 
   def render_cover(pdf)
