@@ -2,14 +2,19 @@ require "prawn"
 require "prawn/measurement_extensions"
 
 module TheRealNoteBook
-  NOTE_RULE_PADDING = 8
-  CLEF_PADDING = 28
+  NOTE_RULE_PADDING = (152.0/59.0).mm
+  CLEF_PADDING = 11.mm
   CLEFS_PER_PAGE = 12
+  # (x * 5 + 11) * 12 - 11 - x = 273
+  # 60x + 132 - 11 - x = 273
+  # 59x = 152
+  # x = 152 / 59
   TEXT_RULING_PADDING = 7.mm
   TEXT_RULES_PER_PAGE = 40
+  # (40 - 1) * 7 = 273
   PAGE_COUNT = 96
-  AR_PAGE_BOX = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
-
+  A4_PAGE_BOX = [210.mm - 12.mm - 25.mm, 297.mm - 12.mm - 12.mm]
+  # 297 - 24 = 273
   ODD_MARGINS = { margin: 12.mm, left_margin: 25.mm }
   EVEN_MARGINS = { margin: 12.mm, right_margin: 25.mm }
 
